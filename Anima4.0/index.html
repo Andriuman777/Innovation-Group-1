@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ANIMA Magangué: experiencia urbana para conocer la fauna del río Magdalena, las ciénagas y la biodiversidad del Caribe colombiano.">
+<meta name="theme-color" content="#0b1f16">
+<meta name="color-scheme" content="dark">
+<title>ANIMA Magangué — Zoológico urbano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body id="top" data-biome="selva" class="dark">
+<!-- FONDO VIVO GLOBAL: canvas interactivo + capas de bioma -->
+<canvas id="bioCanvas" aria-hidden="true"></canvas>
+<div class="biome-layer" id="biomeLayer" aria-hidden="true">
+<span class="blade"></span><span class="blade"></span><span class="blade"></span><span class="blade"></span><span class="blade"></span><span class="blade"></span><span class="blade"></span><span class="blade"></span><span class="blade"></span><span class="blade"></span><span class="blade"></span><span class="blade"></span>
+<span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span><span class="bubble"></span>
+<span class="leaf"></span><span class="leaf"></span><span class="leaf"></span><span class="leaf"></span><span class="leaf"></span><span class="leaf"></span>
+<span class="ripple"></span><span class="ripple"></span><span class="ripple"></span>
+<span class="fire"></span><span class="fire"></span><span class="fire"></span><span class="fire"></span><span class="fire"></span>
+</div>
+<div class="biome-hud glass" id="biomeHud"><span class="pulse-dot"></span><strong id="biomeName">SELVA</strong><small id="biomeDesc">hierba meciéndose · clic para esporas</small></div>
+<a class="skip-link" href="#main">Saltar al contenido</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+<header class="site-header" id="siteHeader">
+<nav class="nav container" aria-label="Navegacion principal">
+<a href="index.html" class="brand"><span class="brand-mark"><i class="fa-solid fa-leaf"></i></span><span class="brand-text">ANIMA <small>Colombia natural</small></span></a>
+<ul class="nav-links" id="navLinks">
+<li><a href="../index.html" class="nav-link">← Perfiles</a></li>
+<li><a href="index.html" class="nav-link active">Inicio</a></li>
+<li><a href="especies.html" class="nav-link">Especies</a></li>
+<li><a href="zoologico.html" class="nav-link">Zoológico</a></li>
+<li><a href="rutas.html" class="nav-link">Rutas</a></li>
+</ul>
+<div class="nav-actions">
+<a class="portal-back" href="../index.html"><i class="fa-solid fa-arrow-left"></i> Perfiles</a>
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Activar tema cálido" aria-pressed="false"><i class="fa-solid fa-sun" aria-hidden="true"></i></button>
+<button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+</div>
+</nav>
+</header>
+<main id="main">
+<!-- HERO -->
+<section class="hero" id="inicio">
+<div class="hero-bg">
+<img class="hero-img" src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?q=80&w=1920&auto=format&fit=crop" alt="Leon en la sabana al atardecer">
+<div class="hero-gradient"></div>
+<div class="firefly-field" id="fireflies"></div>
+</div>
+<div class="container hero-grid">
+<div class="hero-copy">
+<p class="eyebrow"><span class="pulse-dot"></span> MAGANGUÉ - BIODIVERSIDAD VIVA</p>
+<h1 class="hero-title">ANIMA<span class="title-sub">Magangué <em>natural</em></span></h1>
+<p class="slogan">"Un país, miles de formas de <strong>estar vivos.</strong>"</p>
+<p class="hero-desc">La experiencia digital de un zoológico urbano magangueleño: conoce la fauna del río Magdalena, aprende sobre las ciénagas y planea una visita responsable.</p>
+<div class="hero-btns">
+<a href="especies.html" class="btn btn-primary"><i class="fa-solid fa-paw"></i> Explorar especies</a>
+<a href="rutas.html" class="btn btn-ghost"><i class="fa-solid fa-route"></i> Ver rutas</a>
+</div>
+<dl class="hero-stats">
+<div><dt data-count="17">0</dt><dd>especies modeladas</dd></div>
+<div><dt data-count="6">0</dt><dd>sistemas anatomicos</dd></div>
+<div><dt>5</dt><dd>biomas vivos</dd></div>
+</dl>
+<div class="biome-switch">
+<p>Elige tu bioma:</p>
+<button class="biome-btn active" data-biome="selva">Selva</button>
+<button class="biome-btn" data-biome="cielo">Cielo</button>
+<button class="biome-btn" data-biome="laguna">Laguna</button>
+<button class="biome-btn" data-biome="oceano">Oceano</button>
+<button class="biome-btn" data-biome="sabana">Sabana</button>
+</div>
+</div>
+<div class="hero-visual">
+<div class="specimen-card glass">
+<div class="specimen-top"><span class="specimen-tag">EJEMPLAR 001</span><span class="live"><span class="pulse-dot"></span> EN VIVO</span></div>
+<img src="https://images.unsplash.com/photo-1561731216-c3a4d99437d5?q=80&w=800&auto=format&fit=crop" alt="Jaguar mirando a camara en la selva">
+<div class="specimen-info"><h3>Jaguar <span><em>Panthera onca</em></span></h3><p>Selva amazonica - Mamifero</p></div>
+<button class="hotspot" data-spot="Vista binocular nocturna" style="top:22%;left:48%">+</button>
+<button class="hotspot" data-spot="Mordida 1500 PSI" style="top:55%;left:62%">+</button>
+<div class="spot-tip" id="spotTip"></div>
+</div>
+</div>
+</div>
+<a href="#especies" class="scroll-hint">scroll</a>
+</section>
+<!-- FIN HERO -->
+<!-- ESPECIES 1 -->
+<section class="section" id="especies"><div class="container">
+<div class="sec-head"><p class="eyebrow">01 - COLECCION VIVA</p><h2>Explora las <em>especies</em></h2><p class="sec-desc">Filtra por grupo y abre su ficha.</p></div>
+<div class="filters">
+<button class="filter-btn active" data-filter="all" data-biome="selva">Todos</button>
+<button class="filter-btn" data-filter="mamifero" data-biome="sabana">Mamiferos</button>
+<button class="filter-btn" data-filter="ave" data-biome="cielo">Aves</button>
+<button class="filter-btn" data-filter="reptil" data-biome="laguna">Reptiles</button>
+<button class="filter-btn" data-filter="anfibio" data-biome="laguna">Anfibios</button>
+<button class="filter-btn" data-filter="acuatico" data-biome="oceano">Acuaticos</button>
+</div>
+<p class="filter-count" id="filterCount">Mostrando 17 de 17 especies</p>
+<div class="cards-grid" id="gridMain">
+<article class="card tilt" data-group="mamifero"><div class="card-media"><img src="https://images.unsplash.com/photo-1561731216-c3a4d99437d5?q=80&w=800&auto=format&fit=crop" alt="Jaguar entre la vegetacion" loading="lazy"><span class="card-badge">Mamifero</span><span class="card-shine"></span></div><div class="card-body"><h3>Jaguar</h3><p class="sci"><em>Panthera onca</em></p><p class="card-meta">Selva amazonica</p><p>Mordida de 1500 PSI. Nada y trepa.</p><div class="card-foot"><button class="btn btn-small btn-primary" data-species="jaguar">Explorar</button><span class="card-organs">4 camaras</span></div></div></article>
+<article class="card tilt" data-group="ave"><div class="card-media"><img src="https://images.unsplash.com/photo-1611689342806-0863700ce1e4?q=80&w=800&auto=format&fit=crop" alt="Aguila calva" loading="lazy"><span class="card-badge">Ave</span><span class="card-shine"></span></div><div class="card-body"><h3>Aguila calva</h3><p class="sci"><em>Haliaeetus leucocephalus</em></p><p class="card-meta">Bosques y montanas</p><p>Vision 8x. Sacos aereos eficientes.</p><div class="card-foot"><button class="btn btn-small btn-primary" data-species="aguila">Explorar</button><span class="card-organs">20/2 vision</span></div></div></article>
+<article class="card tilt" data-group="mamifero acuatico"><div class="card-media"><img src="https://images.unsplash.com/photo-1607153333879-c174d265f1d2?q=80&w=800&auto=format&fit=crop" alt="Delfin saltando en el oceano" loading="lazy"><span class="card-badge">Acuatico</span><span class="card-shine"></span></div><div class="card-body"><h3>Delfin</h3><p class="sci"><em>Tursiops truncatus</em></p><p class="card-meta">Oceanos tropicales</p><p>Ecolocaliza. Medio cerebro despierto.</p><div class="card-foot"><button class="btn btn-small btn-primary" data-species="delfin">Explorar</button><span class="card-organs">Sonar vivo</span></div></div></article>
+<article class="card tilt" data-group="mamifero"><div class="card-media"><img src="https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?q=80&w=800&auto=format&fit=crop" alt="Elefante africano en la sabana" loading="lazy"><span class="card-badge">Mamifero</span><span class="card-shine"></span></div><div class="card-body"><h3>Elefante</h3><p class="sci"><em>Loxodonta africana</em></p><p class="card-meta">Sabana africana</p><p>Trompa con 40 mil musculos.</p><div class="card-foot"><button class="btn btn-small btn-primary" data-species="elefante">Explorar</button><span class="card-organs">5 toneladas</span></div></div></article>
+</div>
+</div></section>
+<!-- EXTRA CARDS + LISTAS -->
+<section class="section alt"><div class="container">
+<div class="sec-head"><p class="eyebrow">01B - NUEVOS HORIZONTES</p><h2>Ocho <em>descubrimientos</em> mas</h2><p class="sec-desc">La coleccion crece: selva, cielo, arrecife y rio.</p></div>
+<div class="cards-grid" id="grid2">
+<article class="card tilt" data-group="reptil acuatico"><div class="card-media"><img src="https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?q=80&w=800&auto=format&fit=crop" alt="Tortuga marina" loading="lazy"><span class="card-badge">Reptil</span><span class="card-shine"></span></div><div class="card-body"><h3>Tortuga marina</h3><p class="sci"><em>Chelonia mydas</em></p><p>Arrecifes. Caparazon oseo.</p><div class="card-foot"><button class="btn btn-small btn-primary" data-species="tortuga">Explorar</button></div></div></article>
+<article class="card tilt" data-group="anfibio"><div class="card-media"><img src="https://images.unsplash.com/photo-1496070242169-b672c576566b?q=80&w=800&auto=format&fit=crop" alt="Rana verde" loading="lazy"><span class="card-badge">Anfibio</span><span class="card-shine"></span></div><div class="card-body"><h3>Rana dardo</h3><p class="sci"><em>Dendrobates tinctorius</em></p><p>Selva humeda. Piel toxica.</p><div class="card-foot"><button class="btn btn-small btn-primary" data-species="rana">Explorar</button></div></div></article>
+<article class="card tilt" data-group="mamifero"><div class="card-media"><img src="https://images.unsplash.com/photo-1547407139-3c921a66005c?q=80&w=800&auto=format&fit=crop" alt="Lobo gris" loading="lazy"><span class="card-badge">Mamifero</span><span class="card-shine"></span></div><div class="card-body"><h3>Lobo gris</h3><p class="sci"><em>Canis lupus</em></p><p>Boreal. Caza en manada.</p><div class="card-foot"><button class="btn btn-small btn-primary" data-species="lobo">Explorar</button></div></div></article>
+<article class="card tilt" data-group="mamifero"><div class="card-media"><img src="https://images.unsplash.com/photo-1534759846116-5799c33ce22a?q=80&w=800&auto=format&fit=crop" alt="Tigre de bengala" loading="lazy"><span class="card-badge">Mamifero</span><span class="card-shine"></span></div><div class="card-body"><h3>Tigre</h3><p class="sci"><em>Panthera tigris</em></p><p>Selva asiatica. Salto de 10 m.</p><div class="card-foot"><button class="btn btn-small btn-primary" data-species="tigre">Explorar</button></div></div></article>
+<article class="card tilt" data-group="ave"><div class="card-media"><img src="https://images.unsplash.com/photo-1444464666168-49d633b86797?q=80&w=800&auto=format&fit=crop" alt="Colibri suspendido" loading="lazy"><span class="card-badge">Ave</span><span class="card-shine"></span></div><div class="card-body"><h3>Colibri</h3><p class="sci"><em>Archilochus colubris</em></p><p>Jardines. 80 aleteos/s.</p><div class="card-foot"><button class="btn btn-small btn-primary" data-species="colibri">Explorar</button></div></div></article>
+</div>
+<div class="lists-grid">
+<article class="list-card"><h3>Mamiferos</h3><ul><li>Poseen pelo en alguna etapa</li><li>Respiran mediante pulmones</li><li>Gestacion interna</li><li>Producen leche</li><li>Son <strong>endotermos</strong></li></ul></article>
+<article class="list-card"><h3>Exploracion</h3><ol><li>Selecciona especie</li><li>Conoce habitat</li><li>Explora anatomia</li><li>Compara caracteristicas</li></ol></article>
+</div></div></section>
+<!-- END-BLOCK -->
+<!-- ANATOMIA -->
+<section class="section" id="anatomia"><div class="container">
+<div class="sec-head"><p class="eyebrow">02 - BAJO LA PIEL</p><h2>Anatomia <em>animal</em></h2></div>
+<div class="systems">
+<button class="sys-btn active" data-sys="oseo">Oseo</button>
+<button class="sys-btn" data-sys="muscular">Muscular</button>
+<button class="sys-btn" data-sys="respiratorio">Respiratorio</button>
+<button class="sys-btn" data-sys="circulatorio">Circulatorio</button>
+<button class="sys-btn" data-sys="digestivo">Digestivo</button>
+<button class="sys-btn" data-sys="nervioso">Nervioso</button>
+</div>
+<article class="sys-panel glass"><div class="sys-icon" id="sysIcon"><i class="fa-solid fa-bone"></i></div><div><h3 id="sysName">Sistema oseo</h3><p id="sysDesc">Estructura que sostiene y protege.</p><p><strong>Funcion:</strong> <span id="sysFun">Soporte.</span></p><p><strong>Adaptaciones:</strong> <span id="sysSp">Jaguar compacto.</span></p></div></article>
+<div class="explorer">
+<div class="explorer-visual"><h3>Explorador multi-especie</h3>
+<p class="explorer-hint">Elige cualquier animal y toca sus puntos anatómicos para ver su función.</p>
+<div class="anat-toolbar">
+<div class="anat-tabs" id="speciesTabs" role="tablist" aria-label="Seleccionar especie para anatomía"></div>
+<select id="speciesSelect" class="anat-select" aria-label="Seleccionar especie para anatomía"></select>
+</div>
+<h4 id="anatTitle">Jaguar — <em>Panthera onca</em></h4>
+<div class="body-map" id="bodyMap"><img id="bodyImg" src="https://images.unsplash.com/photo-1561731216-c3a4d99437d5?q=80&w=900&auto=format&fit=crop" alt="Animal seleccionado para exploración anatómica"><div id="organDots"></div><div class="spot-tip" id="organTip" role="status"></div></div>
+<div class="organ-btns" id="organBtns" role="tablist" aria-label="Partes anatómicas"></div>
+</div>
+<article class="organ-card glass"><div class="organ-num" id="organNum">01</div><div><p class="eyebrow small" id="organKicker">Punto anatómico 1 de 5</p><h3 id="organName">Cabeza</h3><p id="organDesc">Craneo robusto.</p><ul class="organ-facts" id="organFacts"><li>Mordida extrema</li><li>Bigotes sensores</li></ul></div></article>
+</div>
+<!-- FICHA ANATOMICA DETALLADA (todas las especies) -->
+<article class="glass" id="anatDetail" style="padding:20px;margin-top:18px">
+<div class="anat-tabs" id="anatTabs" role="tablist" aria-label="Ficha anatómica por especie" style="margin-bottom:14px"></div>
+<div class="anat-detail">
+<img id="anatImg" src="https://images.unsplash.com/photo-1561731216-c3a4d99437d5?q=80&w=600&auto=format&fit=crop" alt="Anatomia de la especie">
+<div>
+<p class="eyebrow small">FICHA ANATOMICA</p>
+<h3 id="anatName">Jaguar</h3>
+<p id="anatText">Mamifero hipercarnivoro de cuerpo compacto y mordida unica.</p>
+<div class="anat-bars" id="anatBars"></div>
+</div>
+</div>
+<p class="species-anat" id="anatExtra"></p>
+</article>
+</div></section>
+<!-- END2 -->
+<!-- COMPARADOR -->
+<section class="section alt" id="comparador"><div class="container">
+<div class="sec-head"><p class="eyebrow">03 - COMPARADOR</p><h2>Que tan <em>diferentes</em></h2></div>
+<div class="compare-selects"><div><label for="selA">Especie A</label><select id="selA"></select></div><div class="vs">VS</div><div><label for="selB">Especie B</label><select id="selB"></select></div><button class="btn btn-primary" id="swapBtn">Intercambiar</button></div>
+<div class="compare-cards"><article class="cmp-card glass"><img id="cmpImgA" src="https://images.unsplash.com/photo-1561731216-c3a4d99437d5?q=80&w=600&auto=format&fit=crop" alt="Especie A"><h3 id="cmpNameA">Jaguar</h3><p id="cmpSciA"></p></article><article class="cmp-card glass"><img id="cmpImgB" src="https://images.unsplash.com/photo-1611689342806-0863700ce1e4?q=80&w=600&auto=format&fit=crop" alt="Especie B"><h3 id="cmpNameB">Aguila</h3><p id="cmpSciB"></p></article></div>
+<div class="table-wrap"><table class="cmp-table"><thead><tr><th>Caracteristica</th><th id="thA">A</th><th id="thB">B</th></tr></thead><tbody id="cmpBody"></tbody></table></div>
+<div class="table-wrap"><h3 class="table-title">Tabla general</h3><table class="cmp-table full"><thead><tr><th>Especie</th><th>Grupo</th><th>Habitat</th><th>Alimentacion</th><th>Respiracion</th><th>Dato</th></tr></thead><tbody><tr><td><strong>Jaguar</strong></td><td>Mamifero</td><td>Selva</td><td>Carnivoro</td><td>Pulmonar</td><td>1500 PSI</td></tr><tr><td><strong>Aguila</strong></td><td>Ave</td><td>Bosques</td><td>Carnivoro</td><td>Pulmonar + sacos</td><td>Vision 20/2</td></tr><tr><td><strong>Delfin</strong></td><td>Mamifero</td><td>Oceano</td><td>Carnivoro</td><td>Pulmonar</td><td>Ecolocaliza</td></tr><tr><td><strong>Elefante</strong></td><td>Mamifero</td><td>Sabana</td><td>Herbivoro</td><td>Pulmonar</td><td>Trompa 40k</td></tr><tr><td><strong>Tortuga</strong></td><td>Reptil</td><td>Arrecife</td><td>Omnivoro</td><td>Pulmonar</td><td>80 anos</td></tr><tr><td><strong>Rana</strong></td><td>Anfibio</td><td>Humeda</td><td>Insectivoro</td><td>Cutanea</td><td>Toxica</td></tr><tr><td><strong>Lobo</strong></td><td>Mamifero</td><td>Boreal</td><td>Carnivoro</td><td>Pulmonar</td><td>Aulla 10km</td></tr><tr><td><strong>Camaleon</strong></td><td>Reptil</td><td>Seca</td><td>Insectivoro</td><td>Pulmonar</td><td>Lengua 2x</td></tr><tr><td><strong>Tigre</strong></td><td>Mamifero</td><td>Selva</td><td>Carnivoro</td><td>Pulmonar</td><td>Salto 10m</td></tr><tr><td><strong>Buho</strong></td><td>Ave</td><td>Bosque</td><td>Carnivoro</td><td>Pulmonar</td><td>Vuelo mudo</td></tr><tr><td><strong>Tiburon</strong></td><td>Acuatico</td><td>Oceano</td><td>Carnivoro</td><td>Branquial</td><td>300 dientes</td></tr><tr><td><strong>Cocodrilo</strong></td><td>Reptil</td><td>Rios</td><td>Carnivoro</td><td>Pulmonar</td><td>3700 PSI</td></tr><tr><td><strong>Oso</strong></td><td>Mamifero</td><td>Montana</td><td>Omnivoro</td><td>Pulmonar</td><td>Hiberna</td></tr><tr><td><strong>Colibri</strong></td><td>Ave</td><td>Jardin</td><td>Nectar</td><td>Pulmonar</td><td>80 Hz</td></tr><tr><td><strong>Pulpo</strong></td><td>Acuatico</td><td>Arrecife</td><td>Carnivoro</td><td>Branquial</td><td>3 corazones</td></tr><tr><td><strong>Ajolote</strong></td><td>Anfibio</td><td>Lagos</td><td>Carnivoro</td><td>Branquial</td><td>Regenera</td></tr><tr><td><strong>Tucan</strong></td><td>Ave</td><td>Dosel</td><td>Frugivoro</td><td>Pulmonar</td><td>Pico solar</td></tr></tbody></table></div>
+</div></section>
+<!-- END3 -->
+<!-- GALERIA -->
+<section class="section" id="galeria"><div class="container">
+<div class="sec-head"><p class="eyebrow">04 - GALERIA</p><h2>Galeria <em>salvaje</em></h2></div>
+<div class="gallery-grid">
+<figure class="g-item" data-title="Jaguar" data-desc="Panthera onca"><img src="https://images.unsplash.com/photo-1561731216-c3a4d99437d5?q=80&w=600&auto=format&fit=crop" alt="Jaguar" loading="lazy"><figcaption>Jaguar</figcaption></figure>
+<figure class="g-item" data-title="Aguila" data-desc="Rapaz"><img src="https://images.unsplash.com/photo-1611689342806-0863700ce1e4?q=80&w=600&auto=format&fit=crop" alt="Aguila" loading="lazy"><figcaption>Aguila</figcaption></figure>
+<figure class="g-item" data-title="Delfin" data-desc="Oceano"><img src="https://images.unsplash.com/photo-1607153333879-c174d265f1d2?q=80&w=600&auto=format&fit=crop" alt="Delfin" loading="lazy"><figcaption>Delfin</figcaption></figure>
+<figure class="g-item" data-title="Elefante" data-desc="Sabana"><img src="https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?q=80&w=600&auto=format&fit=crop" alt="Elefante" loading="lazy"><figcaption>Elefante</figcaption></figure>
+<figure class="g-item" data-title="Tortuga" data-desc="Arrecife"><img src="https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?q=80&w=600&auto=format&fit=crop" alt="Tortuga" loading="lazy"><figcaption>Tortuga</figcaption></figure>
+<figure class="g-item" data-title="Selva" data-desc="Pulmon"><img src="https://images.unsplash.com/photo-1440342359743-84fcb8c21f21?q=80&w=600&auto=format&fit=crop" alt="Selva" loading="lazy"><figcaption>Selva</figcaption></figure>
+</div>
+<button class="btn btn-ghost" id="galleryMore">Ver aleatoria</button>
+</div></section>
+<!-- END4 -->
+<!-- MULTIMEDIA -->
+<section class="section alt" id="multimedia"><div class="container">
+<div class="sec-head"><p class="eyebrow">05 - MULTIMEDIA</p><h2>La vida en <em>movimiento</em></h2></div>
+<div class="media-grid">
+<article class="media-card glass"><h3>Zoológico de Cali - Colombia</h3><div class="iframe-wrap"><iframe src="https://www.youtube-nocookie.com/embed/nrskrgjbdmE?rel=0&modestbranding=1" title="Zoológico de Cali - Colombia: recorrido por la conservación y biodiversidad" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><p class="media-note"><a href="https://www.youtube.com/watch?v=nrskrgjbdmE" target="_blank" rel="noopener">Ver el video en YouTube</a></p></article>
+</div>
+</div></section>
+<!-- DOCS -->
+<section class="section" id="docs"><div class="container">
+<div class="sec-head"><p class="eyebrow">06 - DOCS</p><h2>Documentacion <em>tecnica</em></h2></div>
+<div class="table-wrap"><table class="cmp-table full"><thead><tr><th>Requisito</th><th>Etiquetas</th><th>Ubicacion</th></tr></thead><tbody><tr><td>Estructura HTML5</td><td>header nav section article footer</td><td>index.html</td></tr><tr><td>Contenido</td><td>h1 h2 p ul ol img a</td><td>Hero y especies</td></tr><tr><td>CSS base</td><td>font color background margin padding</td><td>styles.css</td></tr><tr><td>Tablas</td><td>table tr td th thead tbody</td><td>Comparador</td></tr><tr><td>Multimedia</td><td>video iframe</td><td>#multimedia</td></tr><tr><td>Avanzado</td><td>radius shadow grid flex media</td><td>Tarjetas</td></tr><tr><td>JS</td><td>menu filtro modal comparador</td><td>app.js</td></tr></tbody></table></div>
+</div></section>
+</main>
+<footer class="footer"><div class="container footer-grid"><div><h3>ANIMA</h3><p>Atlas Natural Interactivo. Proyecto academico HTML5 CSS3 JS.</p></div><div><h4>Navegacion</h4><ul><li><a href="index.html">Inicio</a></li><li><a href="especies.html">Especies</a></li><li><a href="zoologico.html">Zoológico</a></li><li><a href="rutas.html">Rutas</a></li></ul></div><div><h4>Recursos</h4><ul><li><a href="https://www.nationalgeographic.com/animals" target="_blank" rel="noopener">National Geographic</a></li><li><a href="https://www.worldwildlife.org" target="_blank" rel="noopener">WWF</a></li></ul></div><div><h4>Academico</h4><p>Semestre 7 - Diseno Web - 2026</p></div></div><div class="footer-bar"><p>© 2026 ANIMA</p><a href="#top">Volver arriba</a></div></footer>
+<div class="modal" id="speciesModal"><div class="modal-card glass"><button class="modal-close" id="modalClose">x</button><img id="mImg" src="https://images.unsplash.com/photo-1561731216-c3a4d99437d5?q=80&w=600&auto=format&fit=crop" alt="Especie"><div class="modal-body"><p class="eyebrow small" id="mGroup"></p><h3 id="mName"></h3><p class="sci" id="mSci"></p><p id="mDesc"></p><a href="#anatomia" class="btn btn-primary" id="mAnatomy">Ver anatomia</a></div></div></div>
+<div class="modal" id="galleryModal"><div class="modal-card glass wide"><button class="modal-close" id="gClose">x</button><img id="gImg" src="https://images.unsplash.com/photo-1561731216-c3a4d99437d5?q=80&w=600&auto=format&fit=crop" alt="Ampliada"><div class="modal-body"><h3 id="gTitle"></h3><p id="gDesc"></p></div></div></div>
+<button class="to-top" id="toTop">↑</button>
+<script src="js/app.js"></script>
+</body>
+</html>
